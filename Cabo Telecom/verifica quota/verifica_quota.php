@@ -1,6 +1,8 @@
 <?
 /*
-Script que verifica o tamanho da caixa de correio dos usuarios do Active Directory, notificando quando passa de 100MB e bloqueando o acesso quando passa de 1GB
+Script que verifica o tamanho da caixa de correio dos usuarios
+do Active Directory, notificando quando passa de 100MB e bloqueando
+o acesso quando passa de 1GB ( TO DO )
 
 Edluise Costa a.k.a ThEcHaCaL :: c0d3r@thechacal.net
 14/06/2009
