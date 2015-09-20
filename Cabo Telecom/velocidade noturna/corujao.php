@@ -1,13 +1,16 @@
 <?php
 /*
-Todo cable modem possui um arquivo de configuração onde esse diz em que velocodade o cliente navegará. O serviço corujão é um serviço promorcional criado pela Cabo Telecom que todo cliente irá navegar
-com velocidade dobrada a partir da meia noite, voltando a velocidade normal as 6 da manhã. Este script faz a lista dos modens que usam o serviço, a troca de arquivos das velocidades, o reset desses
+Todo cable modem possui um arquivo de configuração onde esse diz em que velocodade o cliente navegará.
+O serviço corujão é um serviço promorcional criado pela Cabo Telecom que todo cliente irá navegar
+com velocidade dobrada a partir da meia noite, voltando a velocidade normal as 6 da manhã.
+Este script faz a lista dos modens que usam o serviço, a troca de arquivos das velocidades, o reset desses
 cables e pra finalizar gera um log com a operação.
 
 Edluise Costa a.k.a ThEcHaCaL :: c0d3r@thechacal.net
 29/08/2007
 Natal / RN / Brasil
 */
+
 //error_reporting(E_ALL);
 ini_set("include_path", ".:..:/usr/local/scripts/corujao/edluise");
 include_once("include/log_lua_cheia.php");
