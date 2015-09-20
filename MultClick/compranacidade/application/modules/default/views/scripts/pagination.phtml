@@ -1,0 +1,39 @@
+<div id="pagination">
+    <div class="content-pagination">
+        <!-- First page link -->
+        <?php if (isset($this->previous)): ?>
+              <a class="clear" href="<?php echo $this->url(array('page' => $this->first)); ?>"><img src="<?php echo $this->baseUrl('public/css/images/start.png'); ?>" /></a>
+        <?php else: ?>
+                <img src="<?php echo $this->baseUrl('public/css/images/start2.png'); ?>" />
+        <?php endif; ?>
+    
+        <!-- Previous page link -->
+    
+        <?php if (isset($this->previous)): ?>
+              <a class="clear" href="<?php echo $this->url(array('page' => $this->previous)); ?>"><img src="<?php echo $this->baseUrl('public/css/images/back.png'); ?>" /></a>
+        <?php else: ?>
+            <img src="<?php echo $this->baseUrl('public/css/images/back2.png'); ?>" />
+        <?php endif; ?>
+        <!-- Numbered page links -->
+        
+        <?php foreach ($this->pagesInRange as $page): ?>
+            <?php if ($page != $this->current): ?>
+                <a class="page" href="<?php echo $this->url(array('page' => $page)); ?>"><?php echo $page; ?></a>
+            <?php else: ?>
+                <span class="page-current"><?php echo $page; ?></span>
+            <?php endif; ?>
+        <?php endforeach; ?>
+        <!-- Next page link -->
+        <?php if (isset($this->next)): ?>
+              <a class="clear" href="<?php echo $this->url(array('page' => $this->next)); ?>"><img src="<?php echo $this->baseUrl('public/css/images/next.png'); ?>" /></a>
+        <?php else: ?>
+            <img src="<?php echo $this->baseUrl('public/css/images/next2.png'); ?>" />
+        <?php endif; ?>
+        <!-- Last page link -->
+        <?php if (isset($this->next)): ?>
+              <a class="clear" href="<?php echo $this->url(array('page' => $this->last)); ?>"><img src="<?php echo $this->baseUrl('public/css/images/end.png'); ?>" /></a>
+        <?php else: ?>
+            <img src="<?php echo $this->baseUrl('public/css/images/end2.png'); ?>" />
+        <?php endif; ?>
+    </div>
+ </div>

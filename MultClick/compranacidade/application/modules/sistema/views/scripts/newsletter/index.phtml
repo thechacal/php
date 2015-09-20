@@ -1,0 +1,30 @@
+<div id="page-title"><?php echo $this->content['page_title']; ?></div>
+
+<form action="/sistema/newsletter/envia/" method="POST">
+	<button type="submit" class="newsletter-registro">Enviar Newsletter</button>
+</form>
+
+<table class="DataTable" id="relatorios-table">
+	<thead>
+		<tr>
+			<th class="item item-email" width="50%">E-mail</th>
+			<th class="item item-cidade" width="70">Cidade</th>
+		</tr>
+	</thead>
+	<tbody>
+	<?php
+		foreach ( $this->dados as $value ){
+	?>
+		<tr class="item item">
+	<?php
+			foreach($value as $k => $v){
+					echo '<td class="data">' . $v . '</td>';
+			}
+	?>
+		</tr>	
+	<?php
+		}
+	?>
+
+</tbody>
+</table>

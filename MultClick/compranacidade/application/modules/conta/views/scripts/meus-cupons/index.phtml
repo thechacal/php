@@ -1,0 +1,42 @@
+
+    <div id="content">
+
+		<h2 class="title-content"><?php echo $this->titulo; ?></h2>
+
+		<div class="categorias-meus_cupons">
+			<strong>Categorias:</strong>
+			<a href="/conta/meus-cupons/">Concretizados</a> | 
+			<a href="/conta/meus-cupons/naoconcretizados">N&atilde;o Concretizados</a>
+		</div>
+		
+		<h2 class="meus_cupons">Concretizados</h2>
+		
+		<table class="DataTable" id="cupons-table">
+			<thead>
+				<tr>
+					<th class="item item-email">T&iacute;tulo</th>
+					<th class="item item-cidade" width="120">Data de Expira&ccedil;&atilde;o</th>
+					<th class="item item-cidade" width="80">Imprimir</th>
+				</tr>
+			</thead>
+			<tbody>
+	<?php
+		foreach ( $this->cupons as $value ){
+	?>
+			<tr class="item item">
+				<td class="data" valign="middle"><?php echo strip_tags($value['titulo']); ?></td>
+				<td class="data" align="center"><?php echo date('d/m/Y',$value['cupom_expira']); ?></td>
+				<td class="item enviar">
+	        		<form action="/conta/meus-cupons/imprimir" method="POST" target="_blank">
+							<input type="hidden" name="id_oferta" value="<?php echo $value['id_oferta']; ?>" />
+						<button type="submit" class="imprimir-registro">Imprimir</button>
+					</form>
+				</td>
+			</tr>
+	<?php
+		}
+	?>
+		</tbody>
+		</table>
+
+	</div>

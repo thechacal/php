@@ -1,0 +1,67 @@
+<div id="page-title"><?php echo $this->content['page_title']; ?></div>
+
+<table class="DataTable" id="relatorios-table">
+	<thead>
+		<tr>
+			<th class="item item-titulo" width="8%">ID</th>
+			<th class="item item-titulo" width="40%">T&iacute;tulo</th>
+			<th class="item item-cidade" width="70">Cidade</th>
+			<th class="item item-total_vendidos" width="60">Vendidos</th>
+			<th class="item opcoes" width="80">Status</th>
+			<th class="item opcoes" width="80">Relat&oacute;rio</th>
+			<th class="item opcoes" width="80">Enviar Cupom</th>
+		</tr>
+	</thead>
+	<tbody>
+	<?php
+		foreach ( $this->dados as $value ){
+	?>
+		<tr class="item item">
+	<?php
+			foreach($value as $k => $v){
+				
+				if($k == 'status')
+					$status = $v ;
+
+				if($k != 'id_oferta')
+					echo '<td class="data">' . $v . '</td>';
+				else {
+	?>
+					<td class="item editar">
+		        		<form action="/tcpdf/doc.php" method="POST">
+								<input type="hidden" name="id_oferta" value="<?php echo $v; ?>" />
+							<button type="submit" class="download-registro">Download</button>
+						</form>
+					</td>
+					<?php
+						if(!empty($status)){
+							if($status == 'Encerrada'){
+					?>
+								<td class="item enviar">
+					        		<form action="/sistema/enviacupom/" method="POST">
+											<input type="hidden" name="id_oferta" value="<?php echo $v; ?>" />
+										<button type="submit" class="email-registro">Enviar</button>
+									</form>
+								</td>
+	<?php
+							} else {
+	?>
+								<td class="item enviar">
+									<input type="hidden" name="id_oferta" value="<?php echo $v; ?>" />
+									<button type="submit" class="email-disabled">Enviar</button>
+								</td>
+	<?php
+							}
+						}
+						
+					$status = '';
+				}
+			}
+	?>
+		</tr>	
+	<?php
+		}
+	?>
+
+</tbody>
+</table>
