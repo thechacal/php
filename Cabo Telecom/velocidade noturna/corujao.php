@@ -6,6 +6,8 @@ com velocidade dobrada a partir da meia noite, voltando a velocidade normal as 6
 Este script faz a lista dos modens que usam o serviço, a troca de arquivos das velocidades, o reset desses
 cables para o mesmo receber o novo arquivo de velocidade e pra finalizar gera um log com a operação.
 
+LUACHEIA: Velocidade do CM aumentada em 100%
+MEIALUA: Velocidade do CM aumentada em 50%
 Edluise Costa a.k.a ThEcHaCaL :: c0d3r@thechacal.net
 29/08/2007
 Natal / RN / Brasil
