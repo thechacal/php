@@ -1,3 +1,3 @@
-# PHP
+# AD
 
-The corujao service is a promotional service created by Cable Telecom that every client will navigate with speed doubled from midnight, returning to normal speed 6 am. I did in 2009.
+Script that checks the size of the Active Directory users' mailbox, notifying it passes 100MB
