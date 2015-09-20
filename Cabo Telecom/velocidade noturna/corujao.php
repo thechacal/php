@@ -8,6 +8,7 @@ cables para o mesmo receber o novo arquivo de velocidade e pra finalizar gera um
 
 LUACHEIA: Velocidade do CM aumentada em 100%
 MEIALUA: Velocidade do CM aumentada em 50%
+
 Edluise Costa a.k.a ThEcHaCaL :: c0d3r@thechacal.net
 29/08/2007
 Natal / RN / Brasil
