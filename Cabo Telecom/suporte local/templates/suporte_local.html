@@ -1,0 +1,89 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<head>
+  <title>Suporte Local - Cabo Telecom</title>
+  <meta name="GENERATOR" content="Quanta Plus">
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+  <link rel="stylesheet" type="text/css" href="css/style.css" media="screen" />
+  <link rel="stylesheet" type="text/css" href="css/cuscosky.css" media="screen" />
+
+{literal}
+<script language="JavaScript">
+function check_empty(field, fname)
+{
+     if(field.value == "") return "O campo " + fname + " não pode ser vazio.\n";
+     return "";
+}
+function validar_form() 
+{
+  output = "";
+  output += check_empty(document.getElementById("nome"), "NOME DO COLABORADOR");
+  output += check_empty(document.getElementById("ramal"), "RAMAL");
+  output += check_empty(document.getElementById("resumo"), "RESUMO");
+  output += check_empty(document.getElementById("descricao"), "DETALHES");
+  if(output == "") return true;
+  
+  alert('Erros encontrados:\n' + output);
+  return false;
+
+}
+
+function show_help()
+{
+  div_h = document.getElementById("help");
+  div_h.style.display = "";
+}
+</script>
+{/literal}
+
+</head>
+<body>
+<br>
+<div align="center"><img src="img/logo.jpg" border="0"></div>
+<a href="javascript:show_help()">Clique aqui para obter ajuda no preenchimento dos campos</a><br>
+<div id="help" style="display:none"><br>
+<table width="80%">
+<tr><td>
+Procedimentos de cadastro de chamado:<br>
+<b>1)</b> Preencha todos os campos do formulário abaixo.<br>
+<b>2)</b> Ao preencher o campo "Nome", não é necessário o nome completo.<br>
+<b>3)</b> No campo "Ramal", preencha com o seu número de ramal ou um ramal próximo a você caso não possua um número exclusivo.<br>
+<b>4)</b> No campo "Gravidade do problema", informe o impacto que o problema tem na execução de suas tarefas na empresa. Onde "Pouco" se refere a um impacto pequeno, e não muito urgente e "Muito Grave" é aquela situação que impede por completo a execução de suas atividades.<br>
+<b>5)</b> No campo "Resumo", descreva em uma linha o seu problema. Ex: "Impressora não funciona" ou ainda "Não estou conseguindo encontrar meus e-mails".<br>
+<b>6)</b> No campo "Detalhes do problema", informa maiores detalhes sobre o problema, como por exemplo, para os casos mencionados no item 6, poderiamos ter: "Ao tentar imprimir um documento no Microsoft Excel, eu recebo a mensagem 'impressora não encontrada'." ou para o outro caso, "Quando abro o Outlook Express a minha caixa de entrada encontra-se vazia."
+</td></tr></table>
+</div>
+
+<h4>Formulário de abertura de chamado de suporte.</h4>
+<FORM action="suporte_enviar.php" method="POST" onsubmit="return validar_form()">
+
+<TABLE border="1">
+  <tr><td>Nome do Colaborador:</td><td><INPUT type="text" name="nome" size="30" id="nome"></td></tr>
+<tr><td>Setor em que Trabalha:</td><td><SELECT name="setores">
+                        <option value="Administrativo">Administrativo</option>
+			<option value="AdmRedes">AdmRedes</option>
+			<option value="Comercial">Comercial</option>
+			<option value="Desenvolvimento">Desenvolvimento</option>
+			<option value="Diretoria">Diretoria</option>
+			<option value="Engenharia">Engenharia</option>
+			<option value="Marketing">Marketing</option>
+			<option value="Relacionamento">Relacionamento</option>
+			<option value="RH">RH</option>
+			<option value="SAC">SAC</option>
+			<option value="Suporte">Suporte</option>
+                      </SELECT></td></tr>
+<tr><td>Ramal:</td><td><INPUT type="text" name="ramal" size="5" id="ramal"></td></tr>
+<tr><td>Gravidade do Problema:</td><td><SELECT name="gravidade">
+                        <option value="Pouca">Pouca</option>
+			<option value="Razóavel">Razóavel</option>
+			<option value="Muito Grave">Muito Grave</option>
+                      </SELECT></td></tr>
+<tr><td>Resumo do Problema:</td><td><INPUT type="text" name="resumo" size="50" id="resumo"></td></tr>
+<tr><td valign="top">Detalhes do Problema:</td><td><textarea name="descricao" cols="60" rows="10" id="descricao"></textarea></td></tr>
+<tr><td colspan="2"><INPUT type="submit" name="btOk" value="  Enviar Chamado  ">&nbsp;<INPUT type="button" name="btCancel" value="  Cancelar  " onclick="window.history.back()"></td></tr>
+</TABLE>
+        </FORM>
+    <br>
+  </body>
+</html>
