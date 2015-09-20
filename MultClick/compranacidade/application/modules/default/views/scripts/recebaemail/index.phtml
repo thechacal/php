@@ -1,0 +1,43 @@
+
+    <div id="content">
+
+		<h2 class="title-content"><?php echo $this->titulo; ?></h2>
+
+		<p>Todos os dias destacamos uma oferta exclusiva e inacredit&aacute;vel para que voc&ecirc; possa<br/>
+		usufruir de um produto, servi&ccedil;o ou experi&ecirc;ncia por um pre&ccedil;o imbat&iacute;vel!</p>
+
+		<div class="formulario-cadastro2" style="margin-top: 20px;">
+			<form action="/newsletter/" method="post" class="Form" enctype="application/x-www-form-urlencoded">
+				<input type="text" id="cidade" name="cidade" class="cidade left" readonly="readonly" value="Cidade" /></input>
+				<input type="text" id="email" name="email" class="email left" value="E-mail"></input>
+				<input type="hidden" id="tipo" name="tipo" value="recebaemail"></input>
+				<input type="image" class="bt-cadastrar left" src="<?php echo $this->baseUrl('public/css/images/bt_cadastrar2.png'); ?>" value=""></input>
+			</form>
+			
+			<div id="cidades">
+				<div class="lista-cidades">
+					<ul>
+					<?php
+						foreach($this->cidades_internas as $v):
+					?>
+								<li><a onclick="javascript:cidade_interna('<?php echo $v['nome']; ?>');"><?php echo $v['nome']; ?></a></li>					
+					<?php
+						endforeach;
+					?>
+					</ul>
+				</div>
+				<div class="lista-cidades-bottom"></div>
+			</div>
+			
+		</div>
+
+	</div>
+	
+        <script type="text/javascript">
+
+			function cidade_interna(c){
+				$('#cidades').slideUp();
+				$('.cidade').attr('value',c);
+			}
+			
+		</script>

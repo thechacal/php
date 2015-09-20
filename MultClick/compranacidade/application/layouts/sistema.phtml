@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+      <head>
+            <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+            <title>Compra na Cidade</title>
+			<link rel="shortcut icon" href="<?php echo $this->baseUrl('public/css/images/favicon.ico'); ?>" />
+            
+	        <?php echo $this->headLink()->setStylesheet( $this->baseUrl('public/css/colorbox.css') ); ?>
+	        <?php echo $this->headLink()->setStylesheet( $this->baseUrl('public/css/jquery-ui-1.8.6.custom.css') ); ?>
+	        <?php echo $this->headLink()->setStylesheet( $this->baseUrl('public/css/style-sistema.css') ); ?>
+	        <?php echo $this->headLink()->setStylesheet( $this->baseUrl('public/css/colorpicker.css') ); ?>
+	        <?php echo $this->headLink()->setStylesheet( $this->baseUrl('public/css/style_markitup.css') ); ?>
+	        <?php echo $this->headLink()->setStylesheet( $this->baseUrl('public/css/style_sets_markitup.css') ); ?>
+
+	        <?php echo $this->headScript()->setFile($this->baseUrl('public/js/jquery.js'), 'text/javascript' ); ?>
+	        <?php echo $this->headScript()->setFile($this->baseUrl('public/js/jqueryui.js'), 'text/javascript' ); ?>
+	        <?php echo $this->headScript()->setFile($this->baseUrl('public/js/colorbox.js'), 'text/javascript' ); ?>
+	        <?php echo $this->headScript()->setFile($this->baseUrl('public/js/dataTables.js'), 'text/javascript' ); ?>
+	        <?php echo $this->headScript()->setFile($this->baseUrl('public/js/mask.js'), 'text/javascript' ); ?>
+	        <?php echo $this->headScript()->setFile($this->baseUrl('public/js/maskmoney.js'), 'text/javascript' ); ?>
+	        <?php echo $this->headScript()->setFile($this->baseUrl('public/js/numeric.js'), 'text/javascript' ); ?>
+	        <?php echo $this->headScript()->setFile($this->baseUrl('public/js/colorpicker.js'), 'text/javascript' ); ?>
+	        <?php echo $this->headScript()->setFile($this->baseUrl('public/js/eye.js'), 'text/javascript' ); ?>
+	        <?php echo $this->headScript()->setFile($this->baseUrl('public/js/utils.js'), 'text/javascript' ); ?>
+	        <?php echo $this->headScript()->setFile($this->baseUrl('public/js/jquery.markitup.js'), 'text/javascript' ); ?>
+	        <?php echo $this->headScript()->setFile($this->baseUrl('public/js/Sistema.js'), 'text/javascript' ); ?>
+      </head>
+      <body>
+            <noscript>
+                  <div>Detectamos que seu JavaScript est&aacute; desligado.</div>
+                  <div>Para acessar nosso sistema voc&ecirc; deve ativ&aacute;-lo.</div>
+            </noscript>
+            <div id="page-wrapper" class="center">
+                  <div id="page">
+                        <div id="side-left" class="f-left">
+                              <div id="logo">
+                                    <a href="/"><img src="<?php echo $this->baseUrl('public/css/images/logo.jpg'); ?>" /></a>
+                              </div>
+                              <div id="menu">
+                                    <ul>
+                                          <li>
+                                                <a href="/sistema/">P&aacute;gina Inicial</a>
+                                          </li>
+                                          <li>
+                                                <a href="/sistema/mudarsenha">Mudar Senha</a>
+                                          </li>
+                                          <li>
+                                                <a href="/sistema/credito/">Cr&eacute;ditos</a>
+                                          </li>
+                                          <li>
+                                                <a href="/sistema/cidade/">Cidades</a>
+                                          </li>
+                                          <li>
+                                                <a href="/sistema/oferta/">Ofertas</a>
+                                          </li>
+                                          <li>
+                                                <a href="/sistema/parceiro/">Parceiros</a>
+                                          </li>
+                                          <li>
+                                                <a href="/sistema/usuario/">Usu&aacute;rios</a>
+                                          </li>
+                                          <li>
+                                                <a href="/sistema/relatorios/">Relat&oacute;rios</a>
+                                          </li>
+                                          <li>
+                                                <a href="/sistema/newsletter/">Newsletter</a>
+                                          </li>
+                                          <li>
+                                                <a href="/logout/">Sair</a>
+                                          </li>
+                                    </ul>
+                              </div>
+                        </div>
+                        <div id="content-wrapper" class="f-left">
+                              <div id="content">
+                                    <?php echo  $this->layout()->content; ?>
+                              </div>
+                        </div>
+                  </div>
+            </div>
+
+            <div id="dialog"></div>
+            <div id="dialog-ajax"></div>
+            <div id="overflow"></div>
+            
+	<?php
+			session_start();
+			
+        	if ( isset( $_SESSION['msg'] ) ) :
+	?>
+				<script type="text/javascript">
+					$(function(){
+                                $( '#dialog' ).html('<?php echo $_SESSION['msg']['content']; ?>');
+                                $( '#dialog' ).dialog({
+                                	title: '<?php echo  $_SESSION['msg']['title']; ?>',
+                                	resizable: false,
+                                	height: 170,
+                                	modal: true,
+                                	buttons: {
+										Ok: function() {
+											$( this ).dialog( 'close' );
+                            			}
+                        			}
+                    			});
+					});
+				</script>
+	<?php
+				unset( $_SESSION['msg'] );
+			endif;
+	?>
+            
+      </body>
+</html>

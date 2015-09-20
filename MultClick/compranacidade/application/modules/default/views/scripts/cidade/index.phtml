@@ -1,0 +1,425 @@
+<?php $oferta = $this->ofertaDia; ?>
+<?php $parceiro = $this->parceiro; ?>
+
+    <div id="content">
+
+    	<div class="col left margin-right">
+            <div class="round-info">
+				<div class="roundtop">
+					<img src="<?php echo $this->baseUrl('public/css/images/top-left.gif'); ?>" alt="" width="15" height="15" class="corner" style="display: none" />
+				</div>
+                
+                <div class="content-info_oferta">
+                
+                	<div class="seta"></div>
+                
+                	<div class="preco-de preco-de-frente">de R$<?php echo  $oferta['M_preco_normal']; ?></div>
+                	<div class="preco-de preco-de-tras">de R$<?php echo  $oferta['M_preco_normal']; ?></div>
+                    
+                	<div class="preco-por preco-por-frente">por R$<?php echo  $oferta['M_preco_oferta']; ?></div>
+                	<div class="preco-por preco-por-tras">por R$<?php echo  $oferta['M_preco_oferta']; ?></div>
+                    
+
+					<div class="info">
+					
+						<?php
+							if($oferta['D_data_fim'] > time()):
+						?>
+					
+							<?php
+								if(!Model_Access::isGuest() && !Model_Modelo::isAdmin()):
+									if(($oferta['cupons_por_pessoa'] == 0) || ($this->qtd_cupom < $oferta['cupons_por_pessoa'])):
+										$link = 'href="/compra/'.base64_encode( base64_encode( $oferta['id'] ) ).'"';
+									elseif($this->qtd_cupom >= $oferta['cupons_por_pessoa']):
+										$link = "href=\"#\" onclick=\"javascript:comprar('Seu limite de cupom para esta oferta foi atingido!');\"";
+									endif;
+								else:
+									$link = "href=\"#\" onclick=\"javascript:comprar('Logue-se ou se cadastre no Site para efetuar a compra!');\"";
+								endif;
+							?>
+						
+	                    	<a <?php echo $link; ?>>
+	                    		<img src="<?php echo $this->baseUrl('public/css/images/bt_comprar.png'); ?>" />
+	                    	</a>
+	                    	
+							<a <?php echo $link; ?>>
+								<img src="<?php echo $this->baseUrl('public/css/images/bt_compre_amigo.png'); ?>" />
+							</a>
+						
+						<?php
+							else:
+						?>
+                        	<img src="<?php echo $this->baseUrl('public/css/images/bt_encerrado.gif'); ?>" class="encerrado" />
+                        <?php
+                        	endif;
+                        ?>
+                        
+	                    <div class="divisoria"></div>
+                        
+                        <div class="espaco-contador">
+	                        <div class="contador" id="relogioh"><?php echo  $oferta['horas']; ?></div>
+	                        <div class="contador-pontos">:</div>
+	                        <div class="contador" id="relogiom"><?php echo  $oferta['minutos']; ?></div>
+	                        <div class="contador-pontos">:</div>
+	                        <div class="contador" id="relogios"><?php echo  $oferta['segundos']; ?></div>
+                        </div>
+                        
+						<?php
+							$hora = date('H', $oferta['D_data_fim']);
+							$minuto = date('i', $oferta['D_data_fim']);
+							$segundo = date('s', $oferta['D_data_fim']);
+							
+							$ano = date('Y', $oferta['D_data_fim']);
+							$mes = date('m', $oferta['D_data_fim']);
+							$dia = date('d', $oferta['D_data_fim']);
+													
+							$tempoRestante = mktime($hora,$minuto,$segundo,$mes,$dia,$ano) - time();
+						?>
+                        
+						<script type="text/javascript">
+                        $(function(){
+                            $('.espaco-contador').each(function(){
+                                  var relogio = $(this);
+
+                                  var now = '<?php echo  date( 'Y,m,d,H,i,s', time() ); ?>';
+                                  var timenow = now.split(',');
+
+                                  var timeleft = '<?php echo  date( 'Y,m,d,H,i,s', $oferta['D_data_fim'] ); ?>';
+                                  var time = timeleft.split(',');
+                                  var data_final = new Date(time[0], time[1], time[2], time[3], time[4], time[5]);
+                                  var data_atual = new Date(timenow[0], timenow[1], timenow[2], timenow[3], timenow[4], timenow[5]);
+
+                                  relogio.countdown({
+                                        until: data_final,
+                                        timezone: -3,
+                                        format: 'HMS',
+                                        serverSync: function(){
+                                              return data_atual
+                                        },
+                                        layout:
+                	                        '<div class="contador" id="relogioh">{hn}</div>'
+                	                        +'<div class="contador-pontos">:</div>'
+                	                        +'<div class="contador" id="relogiom">{m10}{m1}</div>'
+                	                        +'<div class="contador-pontos">:</div>'
+                	                        +'<div class="contador" id="relogios">{s10}{s1}</div>',
+                                        timeSeparator: '',
+                                        expiryText: '<div class="contador" id="relogioh" style="font-size:20px;">O tempo acabou</div>'
+                                  });
+                            });
+                      });
+						</script>
+                        
+                        <?php
+                        	$txtvendidos = (($oferta['numero_atual_compradores'] == 0) || ($oferta['numero_atual_compradores'] == 1)) ? $oferta['numero_atual_compradores'].' vendido' : $oferta['numero_atual_compradores'] . ' vendidos' ;
+                        ?>
+                        
+                        <p class="vendidos"><?php echo $txtvendidos; ?></p>
+                        
+						<?php if ( $oferta['numero_atual_compradores'] >= $oferta['minimo_compradores']) : ?>
+                        	<img src="<?php echo $this->baseUrl('public/css/images/compra_ativada.png'); ?>" />
+							<p class="minimo">M&iacute;nimo de <?php echo $oferta['minimo_compradores']; ?> atingido.</p>
+                        <?php elseif( $oferta['maximo_compradores'] == $oferta['numero_atual_compradores'] ): ?>
+							<p class="minimo">M&aacute;ximo de <?php echo $oferta['maximo_compradores']; ?> atingido.</p>
+						<?php endif; ?>
+                        
+                    </div>
+                    
+                </div>
+                
+				<div class="roundbottom">
+					<img src="<?php echo $this->baseUrl('public/css/images/bottom-left.gif'); ?>" alt="" width="15" height="15" class="corner" style="display: none" />
+				</div>
+            </div>
+            
+            <div class="banner">
+            	<a href="/blog/" target="_blank"><img src="<?php echo $this->baseUrl('public/css/images/banner_projeto.gif'); ?>" /></a>
+			</div>
+            
+            <div class="banner anunciante">
+            	<a href="#"><img src="<?php echo $this->baseUrl('public/css/images/banner_anunciante.gif'); ?>" /></a>
+			</div>
+            
+            <div class="banner anunciante">
+            	<a href="http://www.multclick.com.br" target="_blank"><img src="<?php echo $this->baseUrl('public/css/images/banner_anunciante2.gif'); ?>" /></a>
+			</div>
+            
+        </div>
+        <?php
+        if($oferta){
+	        // Bit.ly  
+	        $longurl = "http://compranacidade.com.br/". $this->cidade."/oferta/".$oferta['id'];
+			$url = "http://api.bit.ly/shorten?version=2.0.1&longUrl=$longurl&login=compranacidade&apiKey=R_95e497e83572af76eb8fbfdeb4f0f33a&format=json&history=1";  
+			$s = curl_init();  
+			curl_setopt($s,CURLOPT_URL, $url);  
+			curl_setopt($s,CURLOPT_HEADER,false);  
+			curl_setopt($s,CURLOPT_RETURNTRANSFER,1);  
+			$result = curl_exec($s);  
+			curl_close( $s );  
+			$obj = json_decode($result, true);  
+			$shorturl = $obj["results"]["$longurl"]["shortUrl"];
+        }  
+        ?>
+    	<div class="col-content left">
+        	<div class="compartilhe">
+            	<font class="tit-compartilhe left">Compartilhe com os amigos:</font>
+                <div class="left">
+                	<ul>
+						<li class="compartilhe-facebook"><font><a target="_blank" href="http://www.facebook.com/sharer.php?u=<?php echo "http://" . $_SERVER['SERVER_NAME'] . "/sharefacebook/".$this->cidade.'/'.$oferta['id']; ?>" style="color: #4c6b99;">facebook</a></font></li> 
+						<li class="compartilhe-twitter"><font><a target="_blank" href="http://twitter.com/home?status=<?php echo urlencode(strip_tags($oferta['titulo'])." ".$shorturl." via @compranacidade"); ?>" style="color: #65d4f6;">twitter</a></font></li>
+						<li class="compartilhe-orkut"><font><a target="_blank" href="http://promote.orkut.com/preview?nt=orkut.com&tt=<?php echo strip_tags($oferta['titulo'])."&du=http://compranacidade.com.br/".$this->cidade."/oferta/".$oferta['id'];?>" style="color: #bb2192;">orkut</a></font></li> 
+						<li class="compartilhe-email"><font><a href="javascript:enviaEmail('<?php echo $oferta['id']; ?>');" style="color: #787676;">e-mail</a></font></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <h2 class="compra-do-dia">Compra do Dia</h2>
+
+            	<?php
+            		$titulo = str_replace(array('<p>','</p>'), "", $oferta['titulo'] );
+            	?>
+            	  <font class="titulo-frente" color="#<?php echo $oferta['cortitulo']; ?>"><?php echo $titulo; ?></font>
+
+            <div class="oferta">
+
+				<?php
+					if(count($oferta['imagens'])-1 > 1):
+				?>
+            	
+				        <div class="main_view">
+				
+				            <div class="window">	
+				                <div class="image_reel">
+				                	<?php
+				                		foreach($oferta['imagens'] as $foto):
+				                			if($foto != ""):
+				                	?>
+				                    	<img src="<?php echo $this->baseUrl('/uploads/'.$foto); ?>" alt="" width="459" height="375" />
+				                    <?php
+				                    		endif;
+				                    	endforeach;
+				                    ?>
+				                </div>
+				            </div>
+				            <div class="paging">
+				            	<?php
+				            		for($i = 1; count($oferta['imagens']) > $i; $i++ ){
+				            	?>
+				                		<a href="#" rel="<?php echo $i; ?>"><?php echo $i; ?></a>
+				                <?php
+				            		}
+				                ?>
+				            </div>
+				        </div>
+				        
+		        <?php
+		        	else:
+		        ?>
+		        
+						<img src="<?php echo $this->baseUrl('/uploads/'.$oferta['imagens'][0]); ?>" alt="" width="459" height="375" />
+		        
+		        <?php
+					endif;
+		        ?>
+		        
+            </div>
+            		
+			<ul id="abas">
+            	<li><a class="aba-destaque" href="#tab1"></a></li>
+                <li><a class="aba-regras" href="#tab2"></a></li>
+                <li><a class="aba-empresa" href="#tab3"></a></li>
+                <li><a class="aba-vote" href="#tab4"></a></li>
+			</ul>
+            
+            <div id="tab1" class="tab-content">
+            	<a name="tab1" /></a>
+
+            		<?php
+            			if($oferta['video']):
+            				$link = explode('&',$oferta['video']);
+							$link = explode('v=',$link[0]);
+            		?>
+						<div class="video"><iframe title="YouTube video player" width="390" height="323" src="http://www.youtube.com/embed/<?php echo $link[1]; ?>?rel=0" frameborder="0" allowfullscreen></iframe></div>
+            		<?php endif;?>
+            		
+            		<?php echo  $oferta['destaques']; ?>
+            		
+            </div>
+            
+            <div id="tab2" class="tab-content">
+            	<a name="tab2" /></a>
+            	
+            		<?php echo  $oferta['regras']; ?>
+            		
+            </div>
+            
+            <div id="tab3" class="tab-content">
+            	<a name="tab3" /></a>
+            	
+					<h2><?php echo $parceiro['nome']; ?></h2>
+
+					<?php if(!empty($parceiro['logo'])): ?>
+						<img style="float:right; margin: 10px; width:190px;" src="<?php echo '/uploads/'.str_replace( ',', '', $parceiro['logo'] ); ?>" />
+					<?php endif; ?>
+					
+					<p>
+						<?php echo  $parceiro['sobre']; ?>
+					</p>
+					
+					<br/>
+					
+					<p>
+						<span><?php echo  $parceiro['rua']; ?>, <?php echo  $parceiro['numero']; ?><br/>
+						
+						<?php echo  $parceiro['bairro']; ?> - <?php echo  $parceiro['cep']; ?><br/>
+						
+						Tel: <?php echo  $parceiro['telefone']; ?> <?php if($parceiro['celular']) echo $parceiro['celular']; ?><br/>
+						
+						E-mail: <a href="mailto:<?php echo  $parceiro['email']; ?>"><?php echo  $parceiro['email']; ?></a><br/>
+						
+						Website: <a href="http://<?php echo  $parceiro['site']; ?>"><?php echo  $parceiro['site']; ?></a>
+						
+						</span><br/><br/>
+						
+						<div id="googlemaps" style="width: 408px; height: 187px;"></div>
+					</p>
+            		
+            </div>
+            
+            <div id="tab4" class="tab-content">
+            	<a name="tab4" /></a>
+            	
+            	<div class="votacao">
+					<p>D&ecirc; sua nota para esta oferta:</p><br/>
+					<div id="stars"></div><br/>
+					<?php
+						$text_votacao = ($this->votacao_total <= 1) ? '<strong>'.$this->votacao_total.'</strong> pessoa votou nesta oferta.' : '<strong>'.$this->votacao_total.'</strong> pessoas votaram nesta oferta.';
+					?>
+	            	<p><?php echo $text_votacao; ?></p>            	
+            	</div>
+            	
+            </div>
+
+            
+        </div>
+        
+    	<div class="col right margin-left">
+            <div class="round-outras_fertas">
+				<div class="roundtop">
+					<img src="<?php echo $this->baseUrl('public/css/images/top-left.gif'); ?>" alt="" width="15" height="15" class="corner" style="display: none" />
+				</div>
+                
+                <div class="content-outras_ofertas">
+                
+                	<h2 class="tit-outras_ofertas">Outras compras</h2>
+                    
+                    <?php
+                    	$i = 0;
+                    	foreach($this->ofertasBonus as $outrasOfertas):
+                    ?>                  
+	                	<div>
+	                    	<a href="/<?php echo $this->cidade; ?>/oferta/<?php echo $outrasOfertas['id']; ?>"><img src="<?php echo $this->baseUrl('/uploads/'.str_replace( ',', '', $outrasOfertas['imagem_cupom'] )); ?>" class="foto-oferta" width="195" height="125" /></a>
+	                        <p align="left"><strong><?php echo strip_tags($outrasOfertas['titulo']); ?></strong></p>
+	                        
+	                        <div class="botoes">
+	                            <font class="left">R$ <?php echo Model_Util::stringToMoney( $outrasOfertas['M_preco_oferta'] ); ?></font>
+	                            <a href="/<?php echo $this->cidade; ?>/oferta/<?php echo $outrasOfertas['id']; ?>" class="left"></a>
+	                        </div>
+	                    </div>
+	                    
+					<?php
+						if($i != 2):
+					?>
+	                    	<div class="line"></div>
+	                <?php 
+	                	endif;
+	                	
+	                	$i++;
+	                	
+	                	endforeach;
+	                ?>
+                    
+                </div>
+                
+				<div class="roundbottom">
+					<img src="<?php echo $this->baseUrl('public/css/images/bottom-left.gif'); ?>" alt="" width="15" height="15" class="corner" style="display: none" />
+				</div>
+            </div>
+        </div>
+    </div>
+
+	<script type="text/javascript">
+		function comprar(text){
+			$(function(){
+                $( '#dialog' ).html(text);
+                $( '#dialog' ).dialog({
+                	title: 'Erro',
+                	resizable: false,
+                	height: 130,
+                	modal: true,
+                	buttons: {
+						Ok: function() {
+							$( this ).dialog( 'close' );
+            			}
+        			}
+    			});
+			});
+		}
+	</script>
+
+		<script src="http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=true&amp;key=ABQIAAAA_c38cGTVmTcwp_bQG-B9txTaXe-9_UJ8CfnNqfHZvyCg5dKn2xSEBfav2VJlpMKFrdqrnkXqWO0Q5w" type="text/javascript"></script>
+		<script type="text/javascript">
+			if (GBrowserIsCompatible()) {
+	            var map = new GMap2(document.getElementById("googlemaps"));
+	            var geocoder = new GClientGeocoder();
+	
+	            var localizacao = '<?php echo  $parceiro['rua']; ?> <?php echo  $parceiro['numero']; ?> <?php echo  $parceiro['bairro']; ?>';
+	
+	              if (geocoder) {
+	                  geocoder.getLatLng(
+	                  localizacao,
+	                  function(point) {
+	                      if (point) {
+	                              map.setCenter(point, 13);
+	                              var marker = new GMarker(point);
+	                              map.addOverlay(marker);
+	                              marker.openInfoWindowHtml(localizacao);
+	                          }
+	                      }
+	                  );
+	
+	              }
+	          }
+	        
+	        $(function(){
+
+	        	$('#stars').raty({
+	        		  start: 	  <?php echo $this->votacao['categoria']; ?>,
+	        		  size:       24,
+	        		  starOff:    'star-off-big.png',
+	        		  starOn:     'star-on-big.png',
+	        		  click: function(score) {
+	        			    var id_oferta = <?php echo $oferta['id']; ?>;
+	        				$.post("/votacao/", {
+		        				id_oferta: id_oferta,
+		        				categoria: score
+			        		},function(data){
+				        		if(data){
+				                    $( '#dialog' ).html(data);
+				                    $( '#dialog' ).dialog({
+				                    	title: 'Erro',
+				                    	resizable: false,
+				                    	height: 130,
+				                    	modal: true,
+				                    	buttons: {
+				    						Ok: function() {
+				    							$( this ).dialog( 'close' );
+				    							window.location.reload();
+				                			}
+				            			}
+				        			});
+				        		}
+	        				});
+	        		  }
+	        	});
+	        });
+		</script>

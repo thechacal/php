@@ -1,0 +1,245 @@
+<?php $city = ($this->layout()->cidade == "Outras Cidades") ? "Natal" : $this->layout()->cidade; ?>
+					
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="description" content="Compra na Cidade é o primeiro site brasileiro de compra coletiva solidaria. A partir da venda de todos os produtos e serviços que ofertamos, destinamos 5% do valor desta venda a projetos solidários. Sem doações monetárias e sim concretas, pretendemos tornar a troca mercadológica de produtos e serviços em ações reais de ajuda em uma atitude de caridade efetiva; buscamos projetos concretos onde realmente as pessoas menos favorecidas sejam beneficiadas."/>   
+		<meta name="keywords" content="Natal, RN, Aracaju, SE, Belem, PA, Belo Horizonte, MG, Brasilia, DF, Campina Grande, PB, Campinas, SP, Curitiba, PR, Florianopolis, SC, Fortaleza, CE, Goiania, GO, Joao Pessoa, Maceio, AL, Manaus, AM, Niteroi, RJ, Porto Alegre, RS, Recife, PE, Rio de Janeiro, Salvador, BA, Sao Luis, MA, Sao Paulo, SP, Teresina, PI, Vitoria, ES, oferta, desconto, compras coletivas, descontos, promocoes, coupom, clube de compras, compra coletiva, promocao, site de compras, sites de compras, sites de compra, cupom de desconto, clube de descontos, sites compra coletiva, peixe urbano, compra, clickon, vendas, comprar, lojas" />
+		<title>Compra na Cidade</title>
+		<link rel="shortcut icon" href="<?php echo $this->baseUrl('public/css/images/favicon.ico'); ?>" />
+
+        <?php echo $this->headLink()->setStylesheet( $this->baseUrl('public/css/style.css') ); ?>
+        <?php echo $this->headLink()->setStylesheet( $this->baseUrl('public/css/jquery-ui-1.8.6.custom.css') ); ?>
+            
+        <?php echo $this->headScript()->setFile($this->baseUrl('public/js/jquery.js'), 'text/javascript' ); ?>
+        <?php echo $this->headScript()->setFile($this->baseUrl('public/js/jqueryui.js'), 'text/javascript' ); ?>
+        <?php echo $this->headScript()->setFile($this->baseUrl('public/js/mask.js'), 'text/javascript' ); ?>
+        <?php echo $this->headScript()->setFile($this->baseUrl('public/js/corner.js'), 'text/javascript' ); ?>
+        <?php echo $this->headScript()->setFile($this->baseUrl('public/js/generic.js'), 'text/javascript' ); ?>
+        <?php echo $this->headScript()->setFile($this->baseUrl('public/js/cufon-yui.js'), 'text/javascript' ); ?>
+        <?php echo $this->headScript()->setFile($this->baseUrl('public/js/arial.font.js'), 'text/javascript' ); ?>
+        <?php echo $this->headScript()->setFile($this->baseUrl('public/js/quicksand.font.js'), 'text/javascript' ); ?>
+        <?php echo $this->headScript()->setFile($this->baseUrl('public/js/countdown.js'), 'text/javascript' ); ?>
+        <?php echo $this->headScript()->setFile($this->baseUrl('public/js/countdown_translate_pt-br.js'), 'text/javascript' ); ?>
+        <?php echo $this->headScript()->setFile($this->baseUrl('public/js/image_slider.js'), 'text/javascript' ); ?>
+        <?php echo $this->headScript()->setFile($this->baseUrl('public/js/jquery.raty.js'), 'text/javascript' ); ?>
+		<?php echo $this->headScript()->setFile($this->baseUrl('public/js/dataTables.js'), 'text/javascript' ); ?>
+	        		
+        <script type="text/javascript">
+			Cufon.replace('.preco-de', { fontFamily: 'Arial', hover: true });
+			Cufon.replace('.preco-por', { fontFamily: 'Arial', hover: true });
+			Cufon.replace('.title-content', { fontFamily: 'Quicksand Bold Regular', hover: true }); 
+
+			function cidade(c){
+				$('.outras-cidades-list2').slideUp();
+				$('.select_outrascidades2').attr('value',c);
+			}
+			
+		</script>
+		
+	</head>
+<body>
+
+
+
+
+	<div id="header">
+		<div class="header-content">
+		
+			<div class="logo">
+				<a href="/cidade/<?php echo $this->layout()->cidade; ?>"><img src="<?php echo $this->baseUrl('public/css/images/logo.png'); ?>" /></a>
+			</div>
+			
+			<div class="outras-cidades">
+				<div class="outras-cidades-select">
+					<div class="select_outrascidades" /><?php echo $this->layout()->cidade; ?></div>
+				</div>
+				
+				<?php
+					if($this->layout()->cidade != 'Outras Cidades'):
+				?>
+					<div class="outras-cidades-descricao">
+						<div class="bkg-left-descricao"></div>
+						<div class="bkg-descricao">Compras em <?php echo $this->layout()->cidade; ?></div>
+						<div class="bkg-right-descricao"></div>
+					</div>
+				<?php
+					endif;
+				?>
+				
+				<ul class="outras-cidades-list">
+					<?php
+						foreach($this->layout()->cidades as $v):
+					?>
+								<li><a href="/cidade/<?php echo $v['nome']; ?>"><?php echo $v['nome']; ?></a></li>					
+					<?php
+						endforeach;
+					?>
+				</ul>
+				
+			</div>
+			
+			<div class="cadastro">
+				<?php echo $this->layout()->form_newsletter; ?>
+			
+				<ul class="outras-cidades-list2">
+					<?php
+						foreach($this->layout()->cidades as $v):
+					?>
+								<li><a onclick="javascript:cidade('<?php echo $v['nome']; ?>');"><?php echo $v['nome']; ?></a></li>					
+					<?php
+						endforeach;
+					?>
+					<li class="final"></li>
+				</ul>
+				
+			</div>
+		
+			<div class="header-menu">
+				<ul>
+					<li><a href="/cidade/<?php echo $city; ?>" class="compra_dia"></a></li>
+					<li><a href="/comprasrecentes/<?php echo $city; ?>" class="compras_recentes"></a></li>
+					<li><a href="/recebaemail/" class="receba_email"></a></li>
+					<li><a href="/comofunciona/" class="como_funciona"></a></li>
+					<li><a href="/blog/" class="blog" target="_blank"></a></li>
+				</ul>
+				
+				<?php if(!Model_Access::isGuest()): ?>
+						<?php if(Model_Modelo::isAdmin()): ?>
+							<div class="bts right">
+								<a href="/sistema/"><img src="<?php echo $this->baseUrl('public/css/images/bt_sistema.png'); ?>" /></a>
+								<a href="/logout/"><img src="<?php echo $this->baseUrl('public/css/images/bt_sair.png'); ?>" /></a>
+							</div>
+						<?php else: ?>
+							<div class="bts right">
+								<a class="bt-minhaconta"><img src="<?php echo $this->baseUrl('public/css/images/bt_minhaconta.png'); ?>" /></a>
+							</div>
+							
+							<div class="espaco-minhaconta">
+								<div class="minhaconta">
+									<ul>
+										<li><a href="/conta/meus-dados/">Meus dados</a></li>
+										<li><a href="/conta/meus-convites/">Meus convites</a></li>
+										<li><a href="/conta/meus-creditos/">Meus cr&eacute;ditos</a></li>
+										<li><a href="/conta/meus-cupons/">Meus cupons</a></li>
+										<li><a href="/logout/">Sair</a></li>
+									</ul>
+								</div>
+							</div>
+						<?php endif; ?>
+				<?php else: ?>
+					<div class="bts right">
+						<a href="/cadastrar/"><img src="<?php echo $this->baseUrl('public/css/images/bt_cadastrar.png'); ?>" /></a>
+						<a class="bt-login"><img src="<?php echo $this->baseUrl('public/css/images/bt_login.png'); ?>" /></a>			
+					</div>
+				
+					<div class="espaco-form-login">
+						<div class="form-login"><?php echo $this->layout()->form; ?></div>
+					</div>
+				<?php endif; ?>
+
+			</div>
+		</div>
+	</div>
+
+	<?php echo $this->layout()->content; ?>
+
+    <div id="footer-content">   
+    	<div class="cols-footer">
+        	<div class="col-footer">
+	        	<h2>Home</h2>
+                <p><a href="/cidade/<?php echo $city; ?>">Compra do dia</a></p>
+                <p><a href="/comprasrecentes/<?php echo $city; ?>">Compras recentes</a></p>
+                <p><a href="/recebaemail/">Receba e-mail di&aacute;rio</a></p>
+                <p><a href="/comofunciona/">Como funciona</a></p>
+            </div>
+        	<div class="col-footer">
+	        	<h2>Sobre</h2>
+                <p><a href="/contato/">Entre em contato</a></p>
+                <p><a href="/termosuso/">Termos de uso</a></p>
+            </div>
+        	<div class="col-footer">
+	        	<h2>Explore</h2>
+                <p><a href="/perguntasfrequentes/">Perguntas frequentes</a></p>
+                <p><a href="/parceiro/">Seja nosso parceiro</a></p>
+                <p><a href="#">Not&iacute;cias</a></p>
+            </div>
+        	<div class="col-footer">
+	        	<h2>Melhore</h2>
+                <p><a href="/sugiradesconto/">Sugira um desconto</a></p>
+                <p><a href="/localidade/">Sugira uma cidade</a></p>
+            </div>
+        	<div class="col-footer">
+	        	<h2>Fa&ccedil;a Parte</h2>
+                <p><a href="/trabalheconosco/">Trabalhe conosco</a></p>
+                <ul>
+                	<li><a href="http://twitter.com/compranacidade" target="_blank"><img src="<?php echo $this->baseUrl('public/css/images/ico-twitter.jpg'); ?>" /></a></li>
+                	<li><a href="http://www.facebook.com/profile.php?id=100002142922840" target="_blank"><img src="<?php echo $this->baseUrl('public/css/images/ico-facebook.jpg'); ?>" /></a></li>
+                	<li><a href="http://www.orkut.com.br/Main#Profile?uid=11248374250853460421" target="_blank"><img src="<?php echo $this->baseUrl('public/css/images/ico-orkut.jpg'); ?>" /></a></li>
+                </ul>
+                <div class="selo_pagseguro">
+                	<a href="http://pagseguro.com.br" target="_blank"><img src="<?php echo $this->baseUrl('public/css/images/pagseguro.gif'); ?>" /></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="footer">
+        <div class="cols-footer footer-height">
+    		<div class="left footer-assinatura">
+            	<a href="http://www.multclick.com.br" target="_blank"><img src="<?php echo $this->baseUrl('public/css/images/multclick.png'); ?>" /></a>
+			</div>
+            <div class="right footer-assinatura">
+				<small>Direitos Autorais 2011 Compra na Cidade. Todos os direitos reservados.</small>
+            </div>
+        </div>
+    </div>
+
+	<div id="dialog"></div>
+	<div id="dialog2"></div>
+	
+	<?php
+			session_start();
+			
+        	if ( isset( $_SESSION['msg'] ) ) :
+	?>
+				<script type="text/javascript">
+					$(function(){
+                                $( '#dialog' ).html('<?php echo $_SESSION['msg']['content']; ?>');
+                                $( '#dialog' ).dialog({
+                                	title: '<?php echo  $_SESSION['msg']['title']; ?>',
+                                	resizable: false,
+                                	height: 170,
+                                	modal: true,
+                                	buttons: {
+										Ok: function() {
+											$( this ).dialog( 'close' );
+                            			}
+                        			}
+                    			});
+					});
+				</script>
+	<?php
+				unset( $_SESSION['msg'] );
+			endif;
+	?>
+
+	<script type="text/javascript">
+	
+	  var _gaq = _gaq || [];
+	  _gaq.push(['_setAccount', 'UA-22149870-1']);
+	  _gaq.push(['_trackPageview']);
+	
+	  (function() {
+	    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+	    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+	    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	  })();
+	
+	</script>
+
+	<?php echo $this->layout()->envio_formulario; ?>
+	
+</body>
+</html>

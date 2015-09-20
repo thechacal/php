@@ -1,0 +1,401 @@
+@charset "utf-8";
+
+body
+{
+      background-color: #fcfcfc;
+      padding-top: 20px;
+}
+*
+{
+      margin: 0;
+      padding: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 12px;
+      color: #4d4c4a;
+      list-style: none;
+      border: 0;
+}
+img{border: 0;}
+.center
+{
+      width: 960px;
+      position: relative;
+      margin: auto;
+}
+#logo a
+{
+      display: block;
+      width: 200px;
+      text-align: center;
+      border: 1px solid #999;
+	  padding-left: 3px;
+	  padding-right: 3px;
+	  padding-top: 3px;
+}
+#logo a span
+{
+      display: block;
+      margin-top: 60px;
+}
+#side-left
+{
+      width: 200px;
+      float: left;
+}
+#content-wrapper
+{
+      width: 735px;
+      float: right;
+}
+#content
+{
+      padding-left: 30px;
+}
+#menu
+{
+      margin-top: 50px;
+}
+.AjaxProcessWrapper
+{
+      background-color: #FFFFFF;
+      border: 2px solid #555;
+      left: 50%;
+      padding: 45px 30px;
+      position: absolute;
+      top: 40px;
+      display: none;
+      z-index: 1000;
+}
+#page-title
+{
+      font-size: 24px;
+      font-family: Georgia, Arial, Helvetica, sans-serif;
+      font-style: italic;
+      margin-bottom: 20px;
+      line-height: 25px;
+}
+.DataTable
+{
+      width: 100%;
+}
+.DataTable th
+{
+      text-align: left;
+      padding: 4px;
+      cursor: pointer;
+      position: relative;
+}
+.DataTable .ui-icon
+{
+      float: left;
+      margin-right: 3px;
+}
+.DataTable td
+{
+      padding: 4px;
+}
+.DataTable tr.even td
+{
+      background-color: #f1f2f3;
+}
+.DataTable tr.odd td
+{
+      background-color: #f9f9f9;
+}
+.DataTable tr:hover td
+{
+      background-color: #eaeaea;
+}
+.DataTable td.remover,
+.DataTable td.editar,
+.DataTable td.enviar	
+{
+      text-align: center;
+}
+.ui-buttonset .ui-button
+{
+      margin: 0;
+      padding: 5px 8px;
+}
+.dataTables_wrapper
+{
+      margin-top: 40px;
+}
+.dataTables_wrapper .ui-widget-header
+{
+      -moz-border-radius: 0;
+      padding: 8px;
+}
+.dataTables_wrapper input,
+.dataTables_wrapper select
+{
+      border: 1px solid #cecece;
+      padding: 3px;
+}
+.dataTables_wrapper input:hover,
+.dataTables_wrapper select:hover,
+.dataTables_wrapper input:focus,
+.dataTables_wrapper select:focus
+{
+      border-color: #aaa;
+}
+.dataTables_length
+{
+      width: 40%;
+      float: left;
+}
+.dataTables_filter
+{
+      width: 50%;
+      float: right;
+      text-align: right;
+}
+.dataTables_info
+{
+      width: 50%;
+      float: left;
+}
+.dataTables_paginate {
+      float: right;
+      text-align: right;
+}
+.DataTables_sort_wrapper
+{
+      position: relative;
+}
+#remover-registros-wrapper
+{
+      -moz-border-radius: 4px;
+      background-color: #EFA6A6;
+      left: 67px;
+      padding: 3px;
+      position: absolute;
+      top: 20px;
+}
+#acao-wrapper
+{
+      display: none;
+}
+.form-label
+{
+      margin-bottom: 2px;
+}
+.form-label label
+{
+      font-size: 14px;
+}
+.form-element .description
+{
+      margin-top: 3px;
+}
+.form-wrapper
+{
+      border-bottom: 1px dashed #dfdfdf;
+      margin-bottom: 15px;
+      padding-bottom: 15px;
+}
+.form-element input,
+.form-element textarea,
+.form-element select
+{
+      border: 1px solid #ececec;
+      padding: 4px;
+      color: #666;
+}
+.form-element input
+{
+      width: 200px;
+}
+.form-element input.more
+{
+      width: 450px;
+}
+.form-element textarea
+{
+      width: 450px;
+      height: 120px;
+}
+.form-element select
+{
+      min-width: 200px;
+}
+.form-element select option
+{
+      padding: 0 3px;
+}
+.form-element input:hover,
+.form-element textarea:hover,
+.form-element select:hover
+{
+      color: #4D4C4A;
+      border-color: #ccc;
+}
+.form-element input:focus,
+.form-element textarea:focus,
+.form-element select:focus
+{
+      color: #4D4C4A;
+      border-color: #bbb;
+}
+.Remover
+{
+      padding: 5px 0;
+      width: 90px;
+}
+.ui-button-text
+{
+      float: left;
+}
+.ui-icon
+{
+      background-image: url(images/ui-icons_888888_256x240.png);
+      float: left;
+      margin-right: 2px;
+}
+a:hover
+{
+      text-decoration: none;
+}
+#dialog .erro
+{
+      line-height: 15px;
+      margin-bottom: 7px;
+}
+.MultiFile
+{
+      clear: both;
+      float: left;
+}
+.AdicionarFile
+{
+      cursor: pointer;
+      float: left;
+      clear: both;
+}
+.AdicionarFile span
+{
+      position: relative;
+      top: -2px;
+}
+.MultiFileWrapper,
+.MultWrapper
+{
+      clear: both;
+      float: left;
+      position: relative;
+      margin-top: 10px;
+}
+.MultiFileWrapper .ui-icon,
+.MultWrapper .ui-icon
+{
+      cursor: pointer;
+}
+.RemoverFile
+{
+      left: 290px;
+      position: absolute;
+      top: 3px;
+}
+ul.errors
+{
+      clear: both;
+}
+ul.errors li
+{
+      padding-left: 4px;
+      color: #e22;
+}
+.img-edit
+{
+      position: relative;
+      float: left;
+      margin: 0 15px 15px 0;
+}
+.remover-imagem .ui-icon,
+.RemoverFile .ui-icon
+{
+      background-image: url("images/ui-icons_cd0a0a_256x240.png");
+      background-color: #FFFFFF;
+      border: 1px solid #EE0000;
+      margin: 0;
+      cursor: pointer;
+      -moz-border-radius: 8px;
+}
+.remover-imagem .ui-icon:hover,
+.RemoverFile .ui-icon:hover
+{
+      background-color: #ffe8e8;
+}
+.remover-imagem
+{
+      position: absolute;
+      top: 0;
+      right: 0;
+}
+.nome-imagem
+{
+      text-align: center;
+}
+.clear
+{
+      clear:both;
+}
+input.Radio
+{
+      margin-right: 3px;
+      position: relative;
+      top: 2px;
+      width: auto;
+}
+.none
+{
+      display: none;
+}
+input, select
+{
+	  padding: 5px;
+	  border: #CECECE solid 1px;
+	  width: 200px;
+}
+textarea
+{
+	  padding: 5px;
+	  height: 150px;
+	  border: #CECECE solid 1px;
+}
+dd
+{
+	margin-bottom: 25px;
+}
+dt label
+{
+	font-weight: bold;
+}
+#menu li
+{
+	line-height: 25px;
+}
+.fg-toolbar select
+{
+	width: auto;
+}
+#message-alert {
+	clear: both;
+	padding-top: 5px;
+	margin-top: 20px;
+}
+#message-alert .img-alert {
+	float: left;
+	margin-right: 15px;
+	margin-top:-10px;
+}
+#message-alert h2.title-alert {
+	font-size: 15px;
+}
+
+div.jHtmlArea .ToolBar ul li a.custom_disk_button 
+{
+	background: url(images/disk.png) no-repeat;
+    background-position: 0 0;
+}
+div.jHtmlArea { border: solid 1px #ccc; }

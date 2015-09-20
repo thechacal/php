@@ -1,0 +1,30 @@
+
+    <div id="content">
+
+		<h2 class="title-content"><?php echo $this->titulo; ?></h2>
+
+		<p>Convide os seus amigos para participar do Compra na Cidade, atrav&eacute;s das redes sociais abaixo:</p><br/>
+
+		<?php
+	        // Bit.ly  
+	        $longurl = 'http://' . $_SERVER['SERVER_NAME'] . '/convite/' . Zend_Auth::getInstance()->getStorage()->read()->link_unico;
+			$url = "http://api.bit.ly/shorten?version=2.0.1&longUrl=$longurl&login=compranacidade&apiKey=R_95e497e83572af76eb8fbfdeb4f0f33a&format=json&history=1";  
+			$s = curl_init();  
+			curl_setopt($s,CURLOPT_URL, $url);  
+			curl_setopt($s,CURLOPT_HEADER,false);  
+			curl_setopt($s,CURLOPT_RETURNTRANSFER,1);  
+			$result = curl_exec($s);  
+			curl_close( $s );  
+			$obj = json_decode($result, true);  
+			$shorturl = $obj["results"]["$longurl"]["shortUrl"];
+			
+			$nome = Zend_Auth::getInstance()->getStorage()->read()->nome;
+			$email = Zend_Auth::getInstance()->getStorage()->read()->email;
+		?>
+
+		<a href="http://promote.orkut.com/preview?nt=orkut.com&tt=<?php echo utf8_encode("Venha conhecer você também o site Compra na Cidade!")."&du=".$longurl;?>" target="_blank" title="Orkut"><img src="<?php echo $this->baseUrl('public/css/images/orkut.png'); ?>" class="convite" /></a>
+		<a href="http://www.facebook.com/share.php?u=<?php echo $longurl; ?>" target="_blank" title="Facebook"><img src="<?php echo $this->baseUrl('public/css/images/facebook.png'); ?>" class="convite" /></a>
+		<a href="http://twitter.com/home?status=<?php echo urlencode(utf8_encode("Venha conhecer você também o site Compra na Cidade! ".$shorturl." via @compranacidade")); ?>" target="_blank" title="Twitter"><img src="<?php echo $this->baseUrl('public/css/images/twitter.png'); ?>" class="convite" /></a>
+		<a href="javascript:enviaConvite('<?php echo $shorturl; ?>','<?php echo $nome; ?>','<?php echo $email; ?>');" title="E-mail"><img src="<?php echo $this->baseUrl('public/css/images/email.png'); ?>" class="convite" /></a>
+		
+	</div>

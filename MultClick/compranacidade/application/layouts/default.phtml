@@ -1,0 +1,137 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>Compra na Cidade</title>
+		<link rel="shortcut icon" href="<?php echo $this->baseUrl('public/css/images/favicon.ico'); ?>" />
+
+        <?php echo $this->headLink()->appendStylesheet( $this->baseUrl('public/css/style.css') ); ?>
+
+        <?php echo $this->headScript()->setFile($this->baseUrl('public/js/jquery.js'), 'text/javascript' ); ?>
+        <?php echo $this->headScript()->setFile($this->baseUrl('public/js/jquery.corner.js'), 'text/javascript' ); ?>
+        <?php echo $this->headScript()->setFile($this->baseUrl('public/js/generic.js'), 'text/javascript' ); ?>
+        <?php echo $this->headScript()->setFile($this->baseUrl('public/js/cufon-yui.js'), 'text/javascript' ); ?>
+        <?php echo $this->headScript()->setFile($this->baseUrl('public/js/arial.font.js'), 'text/javascript' ); ?>
+        <?php echo $this->headScript()->setFile($this->baseUrl('public/js/quicksand.font.js'), 'text/javascript' ); ?>
+		
+        <script type="text/javascript">
+			Cufon.replace('.preco-de', { fontFamily: 'Arial', hover: true });
+			Cufon.replace('.preco-por', { fontFamily: 'Arial', hover: true });
+			Cufon.replace('.title-content', { fontFamily: 'Quicksand Bold Regular', hover: true }); 
+		</script>
+	</head>
+<body>
+
+	<div id="header">
+		<div class="header-content">
+		
+			<div class="logo">
+				<a href="<?php echo $this->baseUrl('/'); ?>"><img src="<?php echo $this->baseUrl('public/css/images/logo.png'); ?>" /></a>
+			</div>
+			
+			<div class="outras-cidades">
+				<div class="outras-cidades-select">
+					<input type="text" class="select_outrascidades" readonly="readonly" id="select1" rel="outras" value="<?php echo $this->layout()->cidade; ?>" />
+				</div>
+				
+				<?php
+					if($this->layout()->cidade != 'Outras Cidades'){
+				?>
+					<div class="outras-cidades-descricao">
+						<div class="bkg-left-descricao"></div>
+						<div class="bkg-descricao">Compras em <?php echo $this->layout()->cidade; ?></div>
+						<div class="bkg-right-descricao"></div>
+					</div>
+				<?php
+					}
+				?>
+				
+				<ul class="outras-cidades-list">
+					<li class="selected"><a href="#">Natal</a></li>
+					<li><a href="#">Mossor&oacute;</a></li>
+				</ul>
+				
+			</div>
+			
+			<div class="cadastro">
+				<input type="image" src="<?php echo $this->baseUrl('public/css/images/bt_cadastrar.png'); ?>" class="bt_cadastrar" />
+				<input type="text" value="seu e-mail" class="input_text" />
+				<input type="text" class="select_outrascidades2" readonly="readonly" id="select2" rel="outras2" value="<?php echo $this->layout()->cidade; ?>" />
+				
+				<ul class="outras-cidades-list2">
+					<li class="selected"><a href="#">Natal</a></li>
+					<li><a href="#">Mossor&oacute;</a></li>
+					<li class="final"></li>
+				</ul>
+				
+			</div>
+		
+			<div class="header-menu">
+				<ul>
+					<li><a href="#" class="compra_dia"></a></li>
+					<li><a href="#" class="compras_recentes"></a></li>
+					<li><a href="#" class="receba_email"></a></li>
+					<li><a href="<?php echo $this->baseUrl('/comofunciona/'); ?>" class="como_funciona"></a></li>
+					<li><a href="#" class="blog"></a></li>
+				</ul>
+				
+				<div class="bt-login">
+					<a href="#"><img src="<?php echo $this->baseUrl('public/css/images/bt_login.png'); ?>" /></a>
+				</div>
+					
+			</div>
+		</div>
+	</div>
+
+	<?php echo $this->layout()->content; ?>
+
+    <div id="footer-content">   
+    	<div class="cols-footer">
+        	<div class="col-footer">
+	        	<h2>Home</h2>
+                <p><a href="#">Compra do dia</a></p>
+                <p><a href="#">Compras recentes</a></p>
+                <p><a href="#">Receba e-mail di&aacute;rio</a></p>
+                <p><a href="<?php echo $this->baseUrl('/comofunciona/'); ?>">Como funciona</a></p>
+            </div>
+        	<div class="col-footer">
+	        	<h2>Sobre</h2>
+                <p><a href="<?php echo $this->baseUrl('/contato/'); ?>">Entre em contato</a></p>
+                <p><a href="<?php echo $this->baseUrl('/termosuso/'); ?>">Termos de uso</a></p>
+            </div>
+        	<div class="col-footer">
+	        	<h2>Explore</h2>
+                <p><a href="<?php echo $this->baseUrl('/perguntasfrequentes/'); ?>">Perguntas frequentes</a></p>
+                <p><a href="#">Seja nosso parceiro</a></p>
+                <p><a href="#">Not&iacute;cias</a></p>
+            </div>
+        	<div class="col-footer">
+	        	<h2>Melhore</h2>
+                <p><a href="#">Sugira um desconto</a></p>
+                <p><a href="#">Sugira uma cidade</a></p>
+            </div>
+        	<div class="col-footer">
+	        	<h2>Fa&ccedil;a Parte</h2>
+                <p><a href="<?php echo $this->baseUrl('/trabalheconosco/'); ?>">Trabalhe conosco</a></p>
+                <ul>
+                	<li><a href="#"><img src="<?php echo $this->baseUrl('public/css/images/ico-twitter.jpg'); ?>" /></a></li>
+                	<li><a href="#"><img src="<?php echo $this->baseUrl('public/css/images/ico-facebook.jpg'); ?>" /></a></li>
+                	<li><a href="#"><img src="<?php echo $this->baseUrl('public/css/images/ico-orkut.jpg'); ?>" /></a></li>
+                </ul>                
+            </div>
+        </div>
+    </div>
+    
+    <div id="footer">
+        <div class="cols-footer footer-height">
+    		<div class="left footer-assinatura">
+            	<a href="http://www.multclick.com.br" target="_blank"><img src="<?php echo $this->baseUrl('public/css/images/multclick.png'); ?>" /></a>
+			</div>
+            <div class="right footer-assinatura">
+				<small>Direitos Autorais 2010 Compra na Cidade. Todos os direitos reservados.</small>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

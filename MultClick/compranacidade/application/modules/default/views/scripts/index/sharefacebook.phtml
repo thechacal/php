@@ -1,0 +1,13 @@
+<html>
+<head>
+<meta property="og:title" content="<?php echo $this->titulo; ?>" />
+<meta property="og:description" content="<?php echo $this->descricao; ?>" />
+<meta property="og:image" content="<?php echo $this->foto; ?>" />
+<script type="text/javascript">
+function init() { window.location = 'http://<?php echo $_SERVER['SERVER_NAME']; ?>/<?php echo $this->cidade; ?>/oferta/<?php echo $this->id; ?>'; }
+window.onload = init;
+</script>
+</head>
+<body>
+</body>
+</html>
