@@ -20,7 +20,7 @@ else
 
 	echo "Connected\n";
 	sleep(2);
-	fputs ($usenet, "edluise\r\n");
+	fputs ($usenet, "usuario\r\n");
        	fputs ($usenet, "senha\r\n");
         fputs ($usenet, "enable\r\n");
 	fputs ($usenet, "arris\r\n");
